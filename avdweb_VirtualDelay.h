@@ -4,13 +4,24 @@
 class VirtualDelay
 {  
 public:
-  VirtualDelay(unsigned long (*delayFunctionPtr)()=millis); 
-  bool done(unsigned long _delay, bool last);
+  VirtualDelay(unsigned long (*timerFunctionPtr)() = millis); 
+  void start(unsigned long delay);
+  bool elapsed();
   
-private:
-  unsigned long (*delayFunctionPtr)(); 
-  bool delayElapsed=0; 
-  static bool started;
-  static unsigned long loopTimeOut, loopStartTime;
+  bool running=0;
+  unsigned long timeOut, (*timerFunctionPtr)(); 
 };
+
+
+class Do_once
+{ 
+public:
+  operator bool ();
+
+private:  
+  bool b=0;
+};
+
+#define DO_ONCE(x) static Do_once do_once; if(do_once) {x;}
+
 #endif

@@ -4,50 +4,56 @@ This program is free software: you can redistribute it and/or modify it under th
 as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
 of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License at http://www.gnu.org/licenses .
- 
-Version 10-1-2016
-Version 6-9-2017 Completely changed 
 
-start at 100
-delay         20  10  40  20  10  40  
-              +   +   +   +   +   +  
-              0   20  30  0   20  30  
-loopTimeOut   20  30  70  20  30  70  
-loopStartTime 100 100 100 170 170 170 
-time          120 130 170 180 200 240 
+Version 10-1-2016
+Version 6-9-2017 elapsed(), added start()
+
+start         _____|_____________________
+                    __________
+running       _____|          |__________
+
+elapsed()     ________________|__________
+
+set timeOut   _____|_____________________      
+
 */
 
-#include <Albert.h>
+#include <Arduino.h>
 #include "avdweb_VirtualDelay.h"
-#include <Streaming.h>
 
-VirtualDelay::VirtualDelay(unsigned long (*delayFunctionPtr)()):
-delayFunctionPtr(delayFunctionPtr)
+VirtualDelay::VirtualDelay(unsigned long (*timerFunctionPtr)()):
+timerFunctionPtr(timerFunctionPtr)
 { 
 }
 
-bool VirtualDelay::done(unsigned long _delay, bool last)
-{ bool returnValue = 0;
-  if(!started)
-  { started = 1;
-    loopStartTime = millis();
+void VirtualDelay::start(unsigned long delay)
+{ if(!running)
+  { running = 1;
+    timeOut = (*timerFunctionPtr)() + delay;
   }
-  loopTimeOut += _delay; // 1e delay of loop = 20, 2e = 30, 3e = 70, reset at end of loop      
-  if((*delayFunctionPtr)() >= (loopTimeOut + loopStartTime)) 
-  { if(!delayElapsed) 
-    { delayElapsed = 1;
-      returnValue = 1; // return 1 just one time  
-      if(last) loopStartTime += loopTimeOut;
-    }      
-  }
-  else delayElapsed = 0;
-  if(last) loopTimeOut=0;
-  return returnValue; 
 }
 
-unsigned long VirtualDelay::loopTimeOut=0; 
-unsigned long VirtualDelay::loopStartTime=0; 
-bool VirtualDelay::started=0;
+bool VirtualDelay::elapsed() 
+{ bool pulse = 0;
+  if(running)
+  { if((*timerFunctionPtr)() >= timeOut) 
+    { running = 0;
+      pulse = 1; // return 1 just one time  
+     }      
+  }
+  return pulse; 
+}
+
+Do_once::operator bool ()
+{ if(!b)
+  { b=1;
+    return 1;
+  }
+  return 0; 
+}
+
+
+
 
 
 
