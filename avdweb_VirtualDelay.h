@@ -22,6 +22,6 @@ private:
   bool b=0;
 };
 
-#define DO_ONCE(x) static Do_once do_once; if(do_once) {x;}
+#define DO_ONCE(x) {static Do_once do_once; if(do_once) {x;}} // brace {} allows creating a new object
 
 #endif
