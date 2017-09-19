@@ -12,16 +12,6 @@ public:
   unsigned long timeOut, (*timerFunctionPtr)(); 
 };
 
-
-class Do_once
-{ 
-public:
-  operator bool ();
-
-private:  
-  bool b=0;
-};
-
-#define DO_ONCE(x) {static Do_once do_once; if(do_once) {x;}} // brace {} allows creating a new object
+#define DO_ONCE(x) {static bool b; if(!b) {b=1; x;}} 
 
 #endif

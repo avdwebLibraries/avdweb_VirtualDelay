@@ -7,6 +7,7 @@ of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Publ
 
 Version 10-1-2016
 Version 6-9-2017 elapsed(), added start()
+Version 19-9-2017 DO_ONCE without class
 
 start         _____|_____________________
                     __________
@@ -42,14 +43,6 @@ bool VirtualDelay::elapsed()
      }      
   }
   return pulse; 
-}
-
-Do_once::operator bool ()
-{ if(!b)
-  { b=1;
-    return 1;
-  }
-  return 0; 
 }
 
 
