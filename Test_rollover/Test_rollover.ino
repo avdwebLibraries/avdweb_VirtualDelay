@@ -1,4 +1,6 @@
 // To do: Works only when the 2 library files (cpp, h) are in the project directory
+// Seems to work for delay values from 0 to 2^31-1
+// Rollover is tested
 
 #include <Arduino.h>
 #include <Streaming.h>
