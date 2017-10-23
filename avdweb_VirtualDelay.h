@@ -5,7 +5,7 @@ class VirtualDelay
 {  
 public:
   VirtualDelay(unsigned long (*timerFunctionPtr)() = millis); 
-  void start(unsigned long delay);
+  void start(signed long delay);
   bool elapsed();
   
   bool running=0;

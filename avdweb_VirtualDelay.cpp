@@ -8,6 +8,7 @@ of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Publ
 Version 10-1-2016
 Version 6-9-2017 elapsed(), added start()
 Version 19-9-2017 DO_ONCE without class
+Version 19-9-2017 fix rollover bug
 
 start         _____|_____________________
                     __________
@@ -27,20 +28,21 @@ timerFunctionPtr(timerFunctionPtr)
 { 
 }
 
-void VirtualDelay::start(unsigned long delay)
+void VirtualDelay::start(signed long delay) // 0...2^31
 { if(!running)
   { running = 1;
-    timeOut = (*timerFunctionPtr)() + delay;
+    timeOut = (*timerFunctionPtr)() + abs(delay);
   }
 }
 
 bool VirtualDelay::elapsed() 
 { bool pulse = 0;
   if(running)
-  { if((*timerFunctionPtr)() >= timeOut) 
+  { //if((signed long)(*timerFunctionPtr)() >= timeOut) // bug, not equal to:
+    if((signed long)((*timerFunctionPtr)() - timeOut) >= 0) // fix rollover bug: https://arduino.stackexchange.com/questions/12587/how-can-i-handle-the-millis-rollover/12588#12588
     { running = 0;
       pulse = 1; // return 1 just one time  
-     }      
+    }      
   }
   return pulse; 
 }
