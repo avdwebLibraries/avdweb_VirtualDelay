@@ -1,3 +1,5 @@
+// To do: Works only when the 2 library files (cpp, h) are in the project directory
+
 #include <Arduino.h>
 #include <Streaming.h>
 #include "avdweb_VirtualDelay.h"
