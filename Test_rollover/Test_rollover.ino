@@ -1,7 +1,3 @@
-// To do: Works only when the 2 library files (cpp, h) are in the project directory
-// Seems to work for delay values from 0 to 2^31-1
-// Rollover is tested
-
 #include <Arduino.h>
 #include <Streaming.h>
 #include "avdweb_VirtualDelay.h"
@@ -40,8 +36,8 @@ void loop()
   ( delay_ms.start(ms);
     delay_us.start(us);    
   ) 
-  if(delay_ms.elapsed()) Serial << "\n" << millis()-t0_ms << "ms"; // result is 1021ms
-  if(delay_us.elapsed()) Serial << "\n" << micros()-t0_us << "us"; // result is 2021884us
+  if(delay_ms.elapsed()) Serial << "\n" << millis()-t0_ms << "ms"; // result is ~ 1021ms
+  if(delay_us.elapsed()) Serial << "\n" << micros()-t0_us << "us"; // result is ~ 2021884us
 }
 
 
