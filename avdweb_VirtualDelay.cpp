@@ -5,10 +5,14 @@ as published by the Free Software Foundation, either version 3 of the License, o
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
 of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License at http://www.gnu.org/licenses .
 
-Version 10-1-2016
-Version 6-9-2017 elapsed(), added start()
-Version 19-9-2017 DO_ONCE without class
-Version 19-9-2017 fix rollover bug
+AUTHOR: Albert van Dalen
+WEBSITE: http://www.avdweb.nl/arduino/libraries/virtualdelay.html
+
+HISTORY:
+1.0.0   10-1-2016
+1.0.1   6-9-2017 elapsed(), added start()
+1.0.2   19-9-2017 DO_ONCE without class
+1.0.3 / 19-9-2017 fix rollover bug
 
 start         _____|_____________________
                     __________
