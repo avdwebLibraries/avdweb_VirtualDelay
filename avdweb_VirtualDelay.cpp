@@ -49,7 +49,7 @@ bool VirtualDelay::elapsed()
     }      
   }
   return pulse; 
-}
+} 
 
 
 
