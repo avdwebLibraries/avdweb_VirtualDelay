@@ -1,3 +1,8 @@
-# VirtualDelay
-The standard Arduino delay() function blocks the Arduino, that is not always allowed. The standard delay has limitations too: it is not possible to use multiple delays at the same time. So I decided to developed a non-blocking library which has many advantages.
+# Advantages of the VirtualDelay library:
+- The delay is virtual, during the delay, the code execution is continued
+- We can use multiple delays sequentially in a loop.
+- We can use multiple delays simultaneously and independent of each other.
+- The delay time can set in micro-seconds or milli-seconds.
+- No hardware timers are used
+- The library is timer-rollover safe
 See the article http://www.avdweb.nl/arduino/libraries/virtualdelay.html
