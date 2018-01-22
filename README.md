@@ -1,4 +1,4 @@
-# Advantages of the VirtualDelay library:
+### Advantages of the VirtualDelay library:
 - The delay is virtual, during the delay, the code execution is continued
 - We can use multiple delays sequentially in a loop.
 - We can use multiple delays simultaneously and independent of each other.
