@@ -5,4 +5,5 @@
 - The delay time can set in micro-seconds or milli-seconds.
 - No hardware timers are used
 - The library is timer-rollover safe
+
 See the article http://www.avdweb.nl/arduino/libraries/virtualdelay.html
