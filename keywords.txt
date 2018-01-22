@@ -19,7 +19,7 @@ elapsed	KEYWORD2
 # Instances (KEYWORD2)
 #######################################
 
-running KEYWORD2
+running	KEYWORD2
 
 #######################################
 # Constants (LITERAL1)
