@@ -14,6 +14,7 @@ avdweb_VirtualDelay	KEYWORD1
 
 start	KEYWORD2
 elapsed	KEYWORD2
+DO_ONCE KEYWORD2
 
 #######################################
 # Instances (KEYWORD2)

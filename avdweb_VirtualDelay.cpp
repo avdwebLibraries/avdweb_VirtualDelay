@@ -32,7 +32,7 @@ set timeOut   _____|_____________________
 VirtualDelay::VirtualDelay(unsigned long (*timerFunctionPtr)())
     : timerFunctionPtr(timerFunctionPtr) {}
 
-void VirtualDelay::start(signed long delay) // 0...2^31
+void VirtualDelay::start(signed long delay)  // 0...2^31
 {
   if (!running) {
     running = 1;
@@ -41,15 +41,16 @@ void VirtualDelay::start(signed long delay) // 0...2^31
 }
 
 bool VirtualDelay::elapsed() {
-  if (running) { // if((signed long)(*timerFunctionPtr)() >= timeOut) // bug,
-                 // not equal to:
-    if ((signed long)((*timerFunctionPtr)() - timeOut) >=
-        0) // fix rollover bug:
-           // https://arduino.stackexchange.com/questions/12587/how-can-i-handle-the-millis-rollover/12588#12588
-    {
+  if (running) {
+    // bug
+    // if((signed long)(*timerFunctionPtr)() >= timeOut)
+    // not the same as
+    if ((signed long)((*timerFunctionPtr)() - timeOut) >= 0) {
+      // fix rollover bug:
+      // https://arduino.stackexchange.com/questions/12587/how-can-i-handle-the-millis-rollover/12588#12588
       running = 0;
-      return 1; //pulse = 1
+      return 1;  // timer is elapsed
     }
   }
-  return 0; //pulse = 0
+  return 0;  // still in delay timer
 }
