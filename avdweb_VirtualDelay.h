@@ -23,22 +23,22 @@ WEBSITE: http://www.avdweb.nl/arduino/libraries/virtualdelay.html
 #endif
 
 class VirtualDelay {
- public:
-  VirtualDelay(unsigned long (*timerFunctionPtr)() = millis);
-  void start(signed long delay);
-  bool elapsed();
+public:
+    VirtualDelay(unsigned long (*timerFunctionPtr)() = millis);
+    void start(signed long delay);
+    bool elapsed();
 
-  bool running = 0;
-  unsigned long timeOut, (*timerFunctionPtr)();
+    bool running = 0;
+    unsigned long timeOut, (*timerFunctionPtr)();
 };
 
-#define DO_ONCE(x) \
-  {                \
-    static bool b; \
-    if (!b) {      \
-      b = 1;       \
-      x;           \
-    }              \
-  }
+#define DO_ONCE(x)     \
+    {                  \
+        static bool b; \
+        if (!b) {      \
+            b = 1;     \
+            x;         \
+        }              \
+    }
 
 #endif

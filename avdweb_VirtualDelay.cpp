@@ -29,28 +29,32 @@ set timeOut   _____|_____________________
 
 #include "avdweb_VirtualDelay.h"
 
-VirtualDelay::VirtualDelay(unsigned long (*timerFunctionPtr)())
-    : timerFunctionPtr(timerFunctionPtr) {}
-
-void VirtualDelay::start(signed long delay)  // 0...2^31
+VirtualDelay::VirtualDelay(
+    unsigned long (*timerFunctionPtr)())
+    : timerFunctionPtr(timerFunctionPtr)
 {
-  if (!running) {
-    running = 1;
-    timeOut = (*timerFunctionPtr)() + abs(delay);
-  }
 }
 
-bool VirtualDelay::elapsed() {
-  if (running) {
-    // bug
-    // if((signed long)(*timerFunctionPtr)() >= timeOut)
-    // not the same as
-    if ((signed long)((*timerFunctionPtr)() - timeOut) >= 0) {
-      // fix rollover bug:
-      // https://arduino.stackexchange.com/questions/12587/how-can-i-handle-the-millis-rollover/12588#12588
-      running = 0;
-      return 1;  // timer is elapsed
+void VirtualDelay::start(signed long delay) // 0...2^31
+{
+    if (!running) {
+        running = 1;
+        timeOut = (*timerFunctionPtr)() + abs(delay);
     }
-  }
-  return 0;  // still in delay timer
+}
+
+bool VirtualDelay::elapsed()
+{
+    if (running) {
+        // bug
+        // if((signed long)(*timerFunctionPtr)() >= timeOut)
+        // not the same as
+        if ((signed long)((*timerFunctionPtr)() - timeOut) >= 0) {
+            // fix rollover bug:
+            // https://arduino.stackexchange.com/questions/12587/how-can-i-handle-the-millis-rollover/12588#12588
+            running = 0;
+            return 1; // timer is elapsed
+        }
+    }
+    return 0; // still in delay timer
 }
