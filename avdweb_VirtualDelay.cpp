@@ -15,7 +15,8 @@ HISTORY:
 1.0.0   10-1-2016
 1.0.1   6-9-2017 elapsed(), added start()
 1.0.2   19-9-2017 DO_ONCE without class
-1.0.3 / 19-9-2017 fix rollover bug
+1.0.3   19-9-2017 fix rollover bug
+1.0.5   some changes made by TADT1909
 
 start         _____|_____________________
                     __________
