@@ -6,4 +6,4 @@
 - No hardware timers are used
 - The library is timer-rollover safe
 
-See the article http://www.avdweb.nl/arduino/libraries/virtualdelay.html
+See the article http://www.avdweb.nl/arduino/libraries/virtualdelay
