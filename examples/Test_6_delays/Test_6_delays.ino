@@ -1,6 +1,5 @@
 #include "avdweb_VirtualDelay.h"
 #include <Arduino.h>
-#include <Streaming.h>
 
 void setup() { Serial.begin(9600); }
 

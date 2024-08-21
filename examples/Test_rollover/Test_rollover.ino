@@ -24,7 +24,7 @@ void setup() {
   t0_us = micros();
   Serial.print("\nTest VirtualDelay ms ");
   Serial.print(ms);
-  Serila.println("ms");
+  Serial.println("ms");
 
   Serial.print("\nTest VirtualDelay us ");
   Serial.print(us);
