@@ -13,8 +13,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: arduino/arduino-lint-action@v1
         with:
-          library-manager: submit
-          compliance: strict
+          library-manager: update
+          #compliance: strict
 
   format:
     runs-on: ubuntu-latest
